@@ -1,0 +1,22 @@
+###########################################
+# Syntax Coloring Map For myLib
+###########################################
+
+###########################################
+# Datatypes (KEYWORD1)
+###########################################
+
+myLib	KEYWORD1
+Com	KEYWORD1
+
+###########################################
+# Methods and Functions (KEYWORD2)
+###########################################
+receivedFlag	KEYWORD2
+enableInterrupt	KEYWORD2
+lcd	KEYWORD2
+setFlag	KEYWORD2
+displayLCD	KEYWORD2
+###########################################
+# Constants (LITERAL1)
+###########################################
