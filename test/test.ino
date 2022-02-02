@@ -5,7 +5,8 @@
 Com com;
 //Com *com_ = new Com();
 
-unsigned long cTimer;
+unsigned long cTimer = 0; // Last time
+unsigned long lPing = 0; // Last time
 unsigned int cnt = 0;
 
 void setup() {
@@ -28,7 +29,7 @@ void setup() {
     Serial.print(F("[CC1101] Initializing ... "));
   #endif
   while (com.begin() != 0);
-
+  
 }
 
 void loop() {
@@ -40,7 +41,7 @@ void loop() {
     }
   }
   if(cTimer < cTime) { // Task
-    cTimer += 1000; 
+    cTimer += PING; 
     com.data.from = MY_ADDR;
     com.data.to = _A9;
     com.data.cmd = _CT;
