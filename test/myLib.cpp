@@ -36,11 +36,11 @@ int Com::readData() {
 
     if (_state == RADIOLIB_ERR_NONE) {
       // packet was successfully received
-      if (data.end != _CR) {
+      if (data.end != _CR_) {
         packetRecBad++;
         return RECEIVE_ERR_PACKET;
       }
-      if ((data.to != _A9) || (data.to != MY_ADDR)) {
+      if ((data.to != _A9_) || (data.to != MY_ADDR)) {
         packetRecBad++;
         return RECEIVE_ERR_PACKET;
       }

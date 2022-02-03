@@ -1,6 +1,8 @@
+#pragma once
+#include "Arduino.h"
 
-#define MODULE 0 // Main module
-//#define MODULE 1 // Slave 1 module
+//#define MODULE 0 // Main module
+#define MODULE 1 // Slave 1 module
 //#define MODULE 0 // Slave 2 module
 
 #if (MODULE == 0)
@@ -12,6 +14,10 @@
 #else
   #error Invalid Module type!
 #endif
+#define SLAVES 2
+#define BUTTONS 3
+
+
 
 #define PING 500 // Ping interval 0.5 sec
 #define PING_E 700 // Ping interval 0.7 sec

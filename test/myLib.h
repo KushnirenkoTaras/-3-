@@ -6,17 +6,20 @@
   #include <microLiquidCrystal_I2C.h>
 #endif
 
+  // Addresses
+  #define _A0_ 0x4130 // Address A0
+  #define _A1_ 0x4131 // Address A1
+  #define _A2_ 0x4132 // Address A1
+  #define _A9_ 0x4139 // Address A9 - multicast
+  // Commands
+  #define _C_PING_ 0x4350 // CP Ping
+  #define _C_PONG_ 0x434f // CO Pong
+  #define _C_STOP_ 0x4354 // CT Stop
+  #define _C_WORK_ 0x4357 // CW Work time
+  #define _C1_ 0x4331
+  #define _C2_ 0x4332
 
-  #define _A0 0x4130
-  #define _A1 0x4131
-  #define _A2 0x4132
-  #define _A9 0x4139
-
-  #define _CT 0x4354
-  #define _C1 0x4331
-  #define _C2 0x4332
-
-  #define _CR 0x0d
+  #define _CR_ 0x0d   // Cr - end packet
   #define RECEIVE_ERR_PACKET  (-1001)
   
   struct pack {
