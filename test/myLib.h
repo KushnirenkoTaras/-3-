@@ -3,7 +3,7 @@
 #include <RadioLib.h>
 
 #if (OUT == 2)
-  #include <microLiquidCrystal_I2C.h>
+  #include <LiquidCrystal_I2C.h>
 #endif
 
   // Addresses

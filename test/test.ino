@@ -80,7 +80,7 @@ void loop() {
     cTimer += PING; 
     com.data.from = MY_ADDR;
     com.data.to = _A9_;
-    com.data.cmd = _CT_;
+    com.data.cmd = _C_PING_;
     com.data.data1 = cnt++;
     com.data.end = _CR_;
     if (com.transmit() == RADIOLIB_ERR_NONE) {
