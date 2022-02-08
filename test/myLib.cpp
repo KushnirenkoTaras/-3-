@@ -36,11 +36,11 @@ int Com::readData() {
 
     if (_state == RADIOLIB_ERR_NONE) {
       // packet was successfully received
-      if (data.end != _CR_) {
+      if (data[(data[_P_CMD_]>> 4)+_P_END_] != _CR_) {
         packetRecBad++;
         return RECEIVE_ERR_PACKET;
       }
-      if ((data.to != _A9_) || (data.to != MY_ADDR)) {
+      if ((data[_P_TO_] != _A_MULTI_) || (data[_P_TO_] != MY_ADDR)) {
         packetRecBad++;
         return RECEIVE_ERR_PACKET;
       }
@@ -57,7 +57,8 @@ int Com::readData() {
         lcd->print(F("dBm "));
         lcd->print(lqi);
         lcd->setCursor(0, 1);
-        sprintf(buf, "%04x%04x%04x%04x", data.from, data.cmd, data.data1, data.data2);
+//        sprintf(buf, "%04x%04x%04x%04x", data[_P_FROM_], data[_P_CMD_], data.data1, data.data2);
+        sprintf(buf, "%04x%04x", data[_P_FROM_], data[_P_CMD_]);
         lcd->print(buf);
 //        lcd.setCursor(3, 1);
 //        lcd.print(data.cmd);
@@ -66,16 +67,16 @@ int Com::readData() {
         Serial.println(F("[CC1101] Received packet!"));
         Serial.print(F("[CC1101] Data:\t\t"));  // print data of the packet
         Serial.print("From: ");
-        Serial.print(data.from, HEX);
+        Serial.print(data[_P_FROM_], HEX);
         Serial.print(" To: ");
-        Serial.print(data.to, HEX);
+        Serial.print(data[_P_TO_], HEX);
         Serial.print(" Cmd: ");
-        Serial.print(data.cmd, HEX);
-        Serial.print(" Data: ");
-        Serial.print(data.data1, HEX);
-        Serial.print(data.data2, HEX);
+        Serial.print(data[_P_CMD_], HEX);
+//        Serial.print(" Data: ");
+//        Serial.print(data.data1, HEX);
+//        Serial.print(data.data2, HEX);
         Serial.print(" End: ");
-        Serial.print(data.end, HEX);
+        Serial.print(data[(data[_P_CMD_]>> 4)+_P_END_], HEX);
         Serial.println();
 
         // print RSSI (Received Signal Strength Indicator)

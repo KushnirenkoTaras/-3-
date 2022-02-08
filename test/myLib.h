@@ -44,18 +44,21 @@
 0x46 - Время
 0x04 - Режим рабочий - рабочее время
 */
+  // Positions
+  #define _P_TO_      0 // To addr
+  #define _P_FROM_    1 // From addr
+  #define _P_CMD_     2 // Command
+  #define _P_END_     3 // End packet + data len
   // Addresses
-  #define _A0_ 0x4130 // Address A0
-  #define _A1_ 0x4131 // Address A1
-  #define _A2_ 0x4132 // Address A1
-  #define _A9_ 0x4139 // Address A9 - multicast
+  #define _A0_      0x00 // Address A0
+  #define _A1_      0x01 // Address A1
+  #define _A2_      0x02 // Address A1
+  #define _A_MULTI_ 0xFF // Address A9 - multicast
   // Commands
-  #define _C_PING_ 0x4350 // CP Ping
-  #define _C_PONG_ 0x434f // CO Pong
-  #define _C_STOP_ 0x4354 // CT Stop
-  #define _C_WORK_ 0x4357 // CW Work time
-  #define _C1_ 0x4331
-  #define _C2_ 0x4332
+  #define _C_PING_ 0x00 // CP Ping
+  #define _C_PONG_ 0x01 // CO Pong
+  #define _C_STOP_ 0x02 // CT Stop
+  #define _C_WORK_ 0x04 // CW Work time
 
   #define _CR_ 0x0d   // Cr - end packet
   #define RECEIVE_ERR_PACKET  (-1001)
@@ -75,8 +78,8 @@ public:
   Com();
   volatile bool receivedFlag;     // flag to indicate that a packet was received
   volatile bool enableInterrupt;  // disable interrupt when it's not needed
-  pack data;
-
+  //pack data;
+  byte data[20];
   #if (OUT == 2)
     LiquidCrystal_I2C *lcd = new LiquidCrystal_I2C(0x27,16,2);  // set the LCD address to 0x3F or 0x27 for a 16 chars and 2 line display
     char toLCD1[20] = "";

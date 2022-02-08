@@ -45,26 +45,7 @@ void setup() {
     }
   #endif
   #if (MODULE != 0) // Init Buttons
-    btn[0].setPins(INPUT_PULLUP, A1);
-    btn[1].setPins(INPUT_PULLUP, A2);
-    #if (BUTTONS > 2)
-      btn[2].setPins(INPUT_PULLUP, A3);
-    #endif
-    #if (BUTTONS > 3)
-      btn[3].setPins(INPUT_PULLUP, A6);
-    #endif
-    #if (BUTTONS > 4)
-      btn[4].setPins(INPUT_PULLUP, 3);
-    #endif
-    #if (BUTTONS > 5)
-      btn[5].setPins(INPUT_PULLUP, 4);
-    #endif
-    #if (BUTTONS > 6)
-      btn[6].setPins(INPUT_PULLUP, 5);
-    #endif
-    #if (BUTTONS > 7)
-      btn[7].setPins(INPUT_PULLUP, 6);
-    #endif
+    INIT_BUTTONS
   #endif
 }
 
@@ -90,11 +71,10 @@ void loop() {
   
   if(cTimer < cTime) { // Task
     cTimer += PING; 
-    com.data.from = MY_ADDR;
-    com.data.to = _A9_;
-    com.data.cmd = _C_PING_;
-    com.data.data1 = cnt++;
-    com.data.end = _CR_;
+    com.data[_P_FROM_] = MY_ADDR;
+    com.data[_P_TO_] = _A_MULTI_;
+    com.data[_P_CMD_] = _C_PING_;
+    com.data[_P_END_] = _CR_;
     if (com.transmit() == RADIOLIB_ERR_NONE) {
       #if (OUT == 2) 
         com.lcd->setCursor(0, 0);
