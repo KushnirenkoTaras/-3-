@@ -47,12 +47,24 @@ void setup() {
   #if (MODULE != 0) // Init Buttons
     btn[0].setPins(INPUT_PULLUP, A1);
     btn[1].setPins(INPUT_PULLUP, A2);
-    btn[2].setPins(INPUT_PULLUP, A3);
-    btn[3].setPins(INPUT_PULLUP, A6);
-    btn[4].setPins(INPUT_PULLUP, 3);
-    btn[5].setPins(INPUT_PULLUP, 4);
-    btn[6].setPins(INPUT_PULLUP, 5);
-    btn[7].setPins(INPUT_PULLUP, 6);
+    #if (BUTTONS > 2)
+      btn[2].setPins(INPUT_PULLUP, A3);
+    #endif
+    #if (BUTTONS > 3)
+      btn[3].setPins(INPUT_PULLUP, A6);
+    #endif
+    #if (BUTTONS > 4)
+      btn[4].setPins(INPUT_PULLUP, 3);
+    #endif
+    #if (BUTTONS > 5)
+      btn[5].setPins(INPUT_PULLUP, 4);
+    #endif
+    #if (BUTTONS > 6)
+      btn[6].setPins(INPUT_PULLUP, 5);
+    #endif
+    #if (BUTTONS > 7)
+      btn[7].setPins(INPUT_PULLUP, 6);
+    #endif
   #endif
 }
 
