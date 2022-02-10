@@ -14,51 +14,47 @@
 Данные 0..n байт
 0x0d - Cr - end packet
 
-// Адреса
-0x00 - Основной блок
-0xFF - широковещательный пакет - всем
-0xFn - широковещательный пакет группе (A,B ,S) n n = 1..E макс 15 групп
-0x1n - устройства линии A. n = 0 - блок концентратор. n = 1..E - индивидуальные
-0x2n - устройства линии B. n = 0 - блок концентратор. n = 1..E - индивидуальные
-0x3n - устройства секундомеры S. n = n = 1..E - индивидуальные
-
    Комманды. Старшие 4 бита - длина данных. Макс длина данных 15 байт
-Команды без данных
-0x00 - Ping - ждем Pong
-0x01 - Pong - ответ на Ping
-0x02 - Режим стоп
-0x03 - Режим рабочий - подготовительное время
-0x04 - Режим рабочий - рабочее время
-0x05 - Режим конец - рабочее время окончено
-0x09 - Подтверждение - принято смена режима
-0x0A - Кнопка линии A разрешена
-0x0B - Кнопка линии B разрешена
-0x0C - Кнопка линии A запрещена
-0x0D - Кнопка линии B запрещена
-0x0E - Кнопка нажата
-0x0F - Подтверждение - принято Кнопка нажата
-
 4 байта данные
 0x43 - Режим рабочий - подготовительное время
 0x44 - Режим рабочий - рабочее время
 0x46 - Время
-0x04 - Режим рабочий - рабочее время
 */
-  // Positions
-  #define _P_TO_      0 // To addr
-  #define _P_FROM_    1 // From addr
+  // Byte Positions
+  #define _P_TO_      0 // Адрес получателя
+  #define _P_FROM_    1 // Адрес отправителя
   #define _P_CMD_     2 // Command
   #define _P_END_     3 // End packet + data len
-  // Addresses
-  #define _A0_      0x00 // Address A0
-  #define _A1_      0x01 // Address A1
-  #define _A2_      0x02 // Address A1
-  #define _A_MULTI_ 0xFF // Address A9 - multicast
-  // Commands
-  #define _C_PING_ 0x00 // CP Ping
-  #define _C_PONG_ 0x01 // CO Pong
-  #define _C_STOP_ 0x02 // CT Stop
-  #define _C_WORK_ 0x04 // CW Work time
+
+  // Адреса
+  #define _A_MAIN_  0x00 // Основной блок
+  #define _A_L_A_   0x01 // Address A1
+  #define _A_L_B_   0x02 // Address A1
+  #define _A_G_A_   0x10 // 0x1n - устройства линии A. n = 0 - блок концентратор. n = 1..E - индивидуальные
+  #define _A_G_B_   0x20 // 0x2n - устройства линии B. n = 0 - блок концентратор. n = 1..E - индивидуальные
+  #define _A_G_S_   0x30 // 0x3n - устройства секундомеры S. n = n = 1..E - индивидуальные
+  
+  #define _A_MULTI_ 0xFF // широковещательный пакет - всем
+  #define _A_MUL_G_ 0xF0 // широковещательный пакет группе (A,B,S) n n = 1..E макс 15 групп
+  
+  // Комманды. Старшие 4 бита - длина данных. Макс длина данных 15 байт
+  // Команды без данных
+  #define _C_PING_   0x00  // Ping - ждем Pong
+  #define _C_PONG_   0x01  // Pong - ответ на Ping
+  #define _C_STOP_   0x02  // Режим стоп
+  #define _C_PREP_   0x02  // Режим рабочий - подготовительное время
+  #define _C_WORK_   0x04  // Work time
+  #define _C_W_END_  0x05  // End Work time
+
+  #define _C_M_CONF_ 0x07  // Confirm change mode
+  #define _C_S_ENA_  0x08  // Кнопка линии S разрешена
+  #define _C_S_DIS_  0x09  // Кнопка линии S запрещена
+  #define _C_A_ENA_  0x0A  // Кнопка линии A разрешена
+  #define _C_A_DIS_  0x0B  // Кнопка линии A запрещена
+  #define _C_B_ENA_  0x0C  // Кнопка линии B разрешена
+  #define _C_B_DIS_  0x0D  // Кнопка линии B запрещена
+  #define _C_BUT_P_  0x0E  // Кнопка нажата
+  #define _C_BUT_C_  0x0F  // Подтверждение - принято Кнопка нажата
 
   #define _CR_ 0x0d   // Cr - end packet
   #define RECEIVE_ERR_PACKET  (-1001)
